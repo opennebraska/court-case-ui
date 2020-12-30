@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.card {
+  border: #61dafb solid 2px;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
