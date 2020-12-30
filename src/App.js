@@ -3,7 +3,7 @@ import './App.css';
 import {useEffect, useState} from 'react'
 
 function App() {
-  const [data, setData] = useState()
+  const [data, setData] = useState([])
   useEffect(()=>{
     // fetch('https://nebraska-landlord-courtcases.herokuapp.com/cases/').then(response => response.json()).then(data=>{
     //   setData(data)
