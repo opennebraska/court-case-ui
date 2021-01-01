@@ -7,7 +7,13 @@ const localizer = momentLocalizer(moment);
 export default function MyCalendar(props) {
     return (
         <div>
-            Calendar here
+            <Calendar
+                localizer={localizer}
+                startAccessor="start"
+                endAccessor="end"
+                events={[]}
+            ></Calendar>
+            
         </div>
     )
 }
