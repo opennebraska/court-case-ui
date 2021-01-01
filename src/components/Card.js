@@ -16,7 +16,7 @@ export default function Card(props) {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} key={props.key}>
             <div>{props.caption}</div>
             <br/>
             <div>Court Date: {props.courtDate}</div>
