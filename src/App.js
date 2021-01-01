@@ -1,51 +1,49 @@
-import logo from './logo.svg';
 import './App.css';
-import {useEffect, useState} from 'react'
+import {useEffect, useState} from 'react';
+import {makeStyles} from '@material-ui/core';
+import fetcher from './fetcher';
+
+import MyCalendar from './components/MyCalendar'
+// import courtCases from './court_cases.json';
+
+
+import Card from './components/Card'
+
+const useStyles = makeStyles(theme => ({
+  appHeader: {
+    backgroundColor: '#282c34',
+    minHeight: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    fontSize: 'calc(10px + 2vmin)',
+    color: 'white'
+  }
+}))
 
 function App() {
+  const classes = useStyles();
   const [data, setData] = useState([])
   useEffect(()=>{
-    // fetch('https://nebraska-landlord-courtcases.herokuapp.com/cases/').then(response => response.json()).then(data=>{
-    //   setData(data)
-    // })
-    setData([
-      {
-        "court_date": "2020-12-09T09:00",
-        "hearing_type": "Arraignment",
-        "case_id": "TEST001",
-        "caption": "Test caption",
-        "person_name": "test"
-      },
-      {
-        "court_date": "2020-12-14T00:00",
-        "hearing_type": "Arraignment",
-        "case_id": "CR200021590",
-        "caption": "State v. Cal D McCoy",
-        "person_name": "test"
-      }])
+    fetcher.get('/cases').then(({data})=>{
+        setData(data)
+    })
   }, [])
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo"/>
+      <MyCalendar/>
+      <header className={classes.appHeader}>
         {data.map(courtCase=> (
-          <div className={"card"}>
-            <div>Court Date: {courtCase.court_date}</div>
-            <div>Hearing Type: {courtCase.hearing_type}</div>
-            <div>Case Id: {courtCase.case_id}</div>
-            <div>Caption: {courtCase.caption}</div>
-            <div>Person Name: {courtCase.person_name}</div>
-          </div>
+          <Card
+            courtDate={courtCase.court_date}
+            hearingType={courtCase.hearing_type}
+            caseId={courtCase.case_id}
+            caption={courtCase.caption}
+            personName={courtCase.person_name}
+          />
         ))}
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
