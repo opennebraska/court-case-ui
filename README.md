@@ -1,7 +1,12 @@
+
+
 # Getting Started with Court Case UI
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 It is built to be a more usable method of aggregating eviction court cases by landlords
+
+The production application can be found [here](https://opennebraska.github.io/court-case-ui/).
+It uses Github Pages for hosting. It will be automatically redeployed on any commit to the main branch.
 
 ## Available Scripts
 
