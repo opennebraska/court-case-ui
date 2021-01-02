@@ -1,18 +1,46 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Modal } from "@material-ui/core";
 import fetcher from "./fetcher";
 import moment from "moment";
 
 import MyCalendar from "./components/MyCalendar";
 
+function rand() {
+  return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+  const top = 50 + rand();
+  const left = 50 + rand();
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  modal: {
+    position: 'absolute',
+    width: 500,
+    maxHeight: 700,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    overflow: 'auto'
+  }
 }));
 
 function App() {
   const classes = useStyles();
   const [data, setData] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
+  const [modalStyle] = useState(getModalStyle);
+  const [bodyText, setBodyText] = useState([]);
+
   useEffect(() => {
     fetcher.get("/cases").then(({ data }) => {
       const events = data.reduce((acc, courtCase) => {
@@ -30,6 +58,28 @@ function App() {
       setData(events);
     });
   }, []);
+
+  const modalBody = (
+      <div style={modalStyle} className={classes.modal}>
+        <span className={classes.modalText}>
+          <h3>Cases: {Object.keys(bodyText).length}</h3>
+          {Object.keys(bodyText).map(bodyTextKey => (
+              <div>
+              Landlord: {bodyTextKey} | Count: {bodyText[bodyTextKey]}
+              </div>
+          ))}
+        </span>
+      </div>
+  )
+
+    const handleOpen = (bodyText) => {
+      setOpenModal(true);
+      setBodyText(bodyText);
+    }
+
+    const handleClose = () => {
+      setOpenModal(false);
+    }
 
   return (
     <div className="App">
@@ -55,13 +105,19 @@ function App() {
             acc[courtCase.title] = acc[courtCase.title] ? acc[courtCase.title]+1: 1
             return acc;
           }, {})
-          alert(`Cases: ${Object.keys(courtCases).length}\n${Object.keys(courtCases).map(courtCaseKey => `\nLandlord: ${courtCaseKey}  Count:${courtCases[courtCaseKey]}`)}`);
+          handleOpen(courtCases);
         }}
         onSelectEvent={(event) => {
           console.log(event);
           alert(JSON.stringify(event));
         }}
       />
+        <Modal
+            open={openModal}
+            onClose={handleClose}
+        >
+          {modalBody}
+        </Modal>
     </div>
   );
 }
