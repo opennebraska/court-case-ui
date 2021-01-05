@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     overflow: 'auto'
+  },
+  modalText: {
+    textAlign: 'left'
   }
 }));
 
@@ -63,11 +66,20 @@ function App() {
       <div style={modalStyle} className={classes.modal}>
         <span className={classes.modalText}>
           <h3>Cases: {Object.keys(bodyText).length}</h3>
-          {Object.keys(bodyText).map(bodyTextKey => (
-              <div>
-              Landlord: {bodyTextKey} | Count: {bodyText[bodyTextKey]}
-              </div>
-          ))}
+          <table>
+            <thead>
+              <th>Landlord</th>
+              <th>Cases</th>
+            </thead>
+            <tbody>
+            {Object.keys(bodyText).map(bodyTextKey => (
+                <tr>
+                  <td>{bodyTextKey}</td>
+                  <td>{bodyText[bodyTextKey]}</td>
+                </tr>
+            ))}
+            </tbody>
+          </table>
         </span>
       </div>
   )
@@ -105,6 +117,13 @@ function App() {
             acc[courtCase.title] = acc[courtCase.title] ? acc[courtCase.title]+1: 1
             return acc;
           }, {})
+          courtCases = Object.keys(courtCases).sort().reduce(
+              (obj, key) => {
+                obj[key] = courtCases[key];
+                return obj;
+              },
+              {}
+          );
           handleOpen(courtCases);
         }}
         onSelectEvent={(event) => {
