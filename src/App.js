@@ -66,7 +66,7 @@ function App() {
       <div style={modalStyle} className={classes.modal}>
         <span className={classes.modalText}>
           <h3>Cases: {Object.keys(bodyText).length}</h3>
-          <table>
+          {Object.keys(bodyText).length > 0 && <table>
             <thead>
               <th>Landlord</th>
               <th>Cases</th>
@@ -79,7 +79,7 @@ function App() {
                 </tr>
             ))}
             </tbody>
-          </table>
+          </table>}
         </span>
       </div>
   )
