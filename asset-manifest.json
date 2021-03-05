@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/court-case-ui/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/court-case-ui/static/js/main.37562f75.chunk.js",
+    "main.js.map": "/court-case-ui/static/js/main.37562f75.chunk.js.map",
+    "runtime-main.js": "/court-case-ui/static/js/runtime-main.e6796070.js",
+    "runtime-main.js.map": "/court-case-ui/static/js/runtime-main.e6796070.js.map",
+    "static/css/2.dd6396f8.chunk.css": "/court-case-ui/static/css/2.dd6396f8.chunk.css",
+    "static/js/2.a6ddcdb1.chunk.js": "/court-case-ui/static/js/2.a6ddcdb1.chunk.js",
+    "static/js/2.a6ddcdb1.chunk.js.map": "/court-case-ui/static/js/2.a6ddcdb1.chunk.js.map",
+    "static/js/3.aeb781cb.chunk.js": "/court-case-ui/static/js/3.aeb781cb.chunk.js",
+    "static/js/3.aeb781cb.chunk.js.map": "/court-case-ui/static/js/3.aeb781cb.chunk.js.map",
+    "index.html": "/court-case-ui/index.html",
+    "static/css/2.dd6396f8.chunk.css.map": "/court-case-ui/static/css/2.dd6396f8.chunk.css.map",
+    "static/css/main.6dea0f05.chunk.css.map": "/court-case-ui/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.a6ddcdb1.chunk.js.LICENSE.txt": "/court-case-ui/static/js/2.a6ddcdb1.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e6796070.js",
+    "static/css/2.dd6396f8.chunk.css",
+    "static/js/2.a6ddcdb1.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.37562f75.chunk.js"
+  ]
+}
