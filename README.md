@@ -1,5 +1,5 @@
 # Application Available At
-https://opennebraska.github.io/court-case-ui/#/
+https://codefornebraska.github.io/court-case-ui/#/
 
 # Getting Started with Court Case UI
 
